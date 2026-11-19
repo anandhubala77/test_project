@@ -27,7 +27,15 @@ export class PurchasePage {
     );
 
     this.PurchaseOk = page.locator(".confirm.btn.btn-lg.btn-primary");
+
+    this.laptopFilter = page.locator(".list-group-item").filter({ hasText: "Laptops" });
+    this.productLap = page.locator(".card-title").filter({ hasText: "Dell i7 8gb" });
+    this.monitorFilter = page.locator(".list-group-item").filter({ hasText: "Monitors" });
+    this.monitor = page.locator(".card-title").filter({ hasText: "ASUS Full HD" });
+
   }
+
+ 
 
   async Productclick() {
     await this.Product.click();
@@ -57,6 +65,21 @@ export class PurchasePage {
     await this.CreditCard.fill(data.card);
     await this.MonthValue.fill(data.month);
     await this.yearValue.fill(data.year);
+  }
+
+  async Laptop(){
+    await this.laptopFilter.click();
+  }
+  async Lap(){
+    await this.productLap.click();
+  }
+
+  async MonitorFilterCLick(){
+    await this.monitorFilter.click();
+  }
+
+  async MonitorSelect(){
+    await this.monitor.click();
   }
 
   async PurchaseButtonclick() {

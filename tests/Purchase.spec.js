@@ -4,7 +4,9 @@ import { LoginPage } from "../pages/Login";
 import dataset from "../testdata/dataset.json";
 import orderdata from "../testdata/Placeorder.json";
 
-test.only("purchase test", async ({ page }) => {
+import { LogoutPage } from "../pages/Logout";
+
+test("purchase test", async ({ page }) => {
   await page.goto("https://www.demoblaze.com");
 
   const username = dataset.username;
@@ -40,3 +42,61 @@ test.only("purchase test", async ({ page }) => {
 
   await purchaseobj.okButtonclick();
 });
+
+test("purchase laptop",async ({page})=>{
+  await page.goto("https://www.demoblaze.com");
+
+  const username = dataset.username;
+  const password = dataset.password;
+
+  const loginobj = new LoginPage(page);
+
+  await loginobj.clickLogin();
+  await loginobj.enterCredtial(username, password);
+  await loginobj.LoginButtonclick();
+
+    
+  const laptopobj=new PurchasePage(page);
+
+  await laptopobj.Laptop();
+  await laptopobj.Lap();
+
+})
+
+test("purchase monitor",async ({page})=>{
+  await page.goto("https://www.demoblaze.com");
+
+  const username = dataset.username;
+  const password = dataset.password;
+
+  const loginobj = new LoginPage(page);
+
+  await loginobj.clickLogin();
+  await loginobj.enterCredtial(username, password);
+  await loginobj.LoginButtonclick();
+
+    
+  const monitorobj=new PurchasePage(page);      
+  await monitorobj.MonitorFilterCLick();
+  await monitorobj.MonitorSelect();
+})
+
+test.only("logOut",async({page})=>{
+   await page.goto("https://www.demoblaze.com");
+
+  const username = dataset.username;
+  const password = dataset.password;
+
+  const loginobj = new LoginPage(page);
+
+  await loginobj.clickLogin();
+  await loginobj.enterCredtial(username, password);
+  await loginobj.LoginButtonclick();
+
+  const logoutobj = new LogoutPage(page);
+
+  await logoutobj.clickLogout();
+
+
+   
+})

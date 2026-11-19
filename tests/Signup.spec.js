@@ -20,13 +20,13 @@ test("Sign up test", async ({ page }) => {
   await dialog.accept();
 });
 
-test.only("close button ", async ({ page }) => {
+test("close button ", async ({ page }) => {
   await page.goto("https://www.demoblaze.com");
 
   const closeobj = new SignupPage(page);
 
   await closeobj.Signuplink()
-  await closeobj.clickClose();
+  // await closeobj.clickClose();
 
   await expect(closeobj.signupModal).toBeHidden();
 });
